@@ -1,5 +1,8 @@
 use bevy::prelude::*;
 
+#[derive(Component)]
+struct Player;
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
@@ -9,4 +12,16 @@ fn main() {
 
 fn setup(mut commands: Commands) {
     commands.spawn(Camera2d);
+
+    commands.spawn((
+        Player,
+        Text2d::new("@"),
+        TextFont {
+            font_size: FontSize::Px(12.0),
+            font: default(),
+            ..default()
+        },
+        TextColor(Color::WHITE),
+        Transform::from_translation(Vec3::ZERO),
+    ));
 }
