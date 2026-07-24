@@ -7,6 +7,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_systems(Startup, setup)
+        .add_systems(Update, listen_for_quit)
         .add_systems(Update, player_movement)
         .run();
 }
@@ -25,6 +26,15 @@ fn setup(mut commands: Commands) {
         TextColor(Color::WHITE),
         Transform::from_translation(Vec3::ZERO),
     ));
+}
+
+fn listen_for_quit(
+    input: Res<ButtonInput<KeyCode>>,
+    mut exit: MessageWriter<AppExit>,
+) {
+    if input.just_pressed(KeyCode::Escape) {
+        exit.write(AppExit::Success);
+    }
 }
 
 fn player_movement(
