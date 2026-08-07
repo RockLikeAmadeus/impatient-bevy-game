@@ -33,3 +33,17 @@ impl TilemapDefinition {
         URect::from_corners(min, min + self.tile_size())
     }
 }
+
+pub const TILEMAP: TilemapDefinition = TilemapDefinition {
+    tile_width: 32,
+    tile_height: 32,
+    atlas_width: 256,
+    atlas_height: 320,
+    sprites: &[
+        TilemapSprite {
+            name: "dirt",
+            pixel_x: 128,
+            pixel_y: 0,
+        },
+    ]
+};

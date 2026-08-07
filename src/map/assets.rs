@@ -1,5 +1,6 @@
 use bevy::{prelude::*, sprite::Anchor};
 use bevy_procedural_tilemaps::prelude::*;
+use crate::map::tilemap::TILEMAP;
 
 #[derive(Clone)]
 pub struct SpawnableAsset {
@@ -26,5 +27,20 @@ impl SpawnableAsset {
     pub fn with_grid_offset(mut self, offset: GridDelta) -> Self {
         self.grid_offset = offset;
         self
+    }
+}
+
+#[derive(Clone)]
+pub struct TilemapHandles {
+    pub image: Handle<Image>,
+    pub layout: Handle<TextureAtlasLayout>,
+}
+
+impl TilemapHandles {
+    pub fn sprite(&self, atlas_index: usize) -> Sprite {
+        Sprite::from_atlas_image(
+            self.image.clone(),
+            TextureAtlas::from(self.layout.clone()).with_index(atlas_index),
+        )
     }
 }
