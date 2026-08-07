@@ -67,7 +67,7 @@ pub fn load_assets(
     tilemap_handles: &TilemapHandles,
     asset_definitions: Vec<Vec<SpawnableAsset>>
 ) -> ModelsAssets<Sprite> {
-    let mut model_assets = ModelAssets::<Sprite>::new();
+    let mut model_assets = ModelsAssets::<Sprite>::new();
     // for each type of tile...
     for (model_index, assets) in asset_definitions.into_iter().enumerate() {
         // for each sprite that tile needs...
